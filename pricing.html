@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='28' fill='%232563EB'/%3E%3Ccircle cx='38' cy='44' r='6' fill='%23FFFFFF'/%3E%3Ccircle cx='62' cy='44' r='6' fill='%23FFFFFF'/%3E%3Crect x='35' y='52' width='30' height='8' rx='4' fill='%23FFFFFF'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>DriveSim &middot; Pricing — Choose Your Plan</title>
+
+    <script src="tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: ['class', '[data-theme="dark"]'],
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-text': 'var(--color-primary-text)',
+                        'secondary-text': 'var(--color-secondary-text)',
+                        accent: 'var(--color-accent)',
+                        'accent-light': 'var(--color-accent-light)',
+                        'accent-dark': 'var(--color-accent-dark)',
+                        border: 'var(--color-border)',
+                        hover: 'var(--color-hover)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root, html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #0F172A;
+            --color-secondary-text: #475569;
+            --color-accent: #2563EB;
+            --color-accent-light: #60A5FA;
+            --color-accent-dark: #1D4ED8;
+            --color-border: #E2E8F0;
+            --color-hover: #F8FAFC;
+            --color-footer-bg: #0F172A;
+            --color-footer-text: #FFFFFF;
+            --header-bg: rgba(255, 255, 255, 0.85);
+        }
+        html[data-theme='dark'] {
+            --color-background: #0F172A;
+            --color-primary-text: #F8FAFC;
+            --color-secondary-text: #94A3B8;
+            --color-accent: #3B82F6;
+            --color-accent-light: #60A5FA;
+            --color-accent-dark: #2563EB;
+            --color-border: #1E293B;
+            --color-hover: #1E293B;
+            --color-footer-bg: #030712;
+            --color-footer-text: #FFFFFF;
+            --header-bg: rgba(15, 23, 42, 0.85);
+        }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--color-background); }
+        ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+        .text-primary-text { color: var(--color-primary-text); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .text-accent { color: var(--color-accent); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-hover { background-color: var(--color-hover); }
+        .bg-accent { background-color: var(--color-accent); }
+        .border-border { border-color: var(--color-border); }
+        .border-accent { border-color: var(--color-accent); }
+        .hover\:text-accent:hover { color: var(--color-accent) !important; }
+
+        #main-header {
+            background-color: var(--header-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        #main-footer {
+            background-color: var(--color-footer-bg);
+            color: var(--color-footer-text);
+        }
+        #main-footer .footer-heading { color: var(--color-accent) !important; }
+        #main-footer .footer-link:hover { color: var(--color-accent); padding-left: 4px; transition: all 0.2s ease; }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 2.5px;
+            background-color: var(--color-accent);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            border-radius: 4px;
+        }
+        .nav-link:hover::after { transform: scaleX(1); }
+        .nav-link.active { color: var(--color-accent) !important; font-weight: 600; }
+        .nav-link.active::after { transform: scaleX(1); }
+
+        /* Mobile Drawer Active Navigation Link Styles */
+        .mobile-nav-link {
+            color: var(--color-primary-text);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+        .mobile-nav-link:hover {
+            color: var(--color-accent);
+            background-color: var(--color-hover);
+        }
+        .mobile-nav-link.active {
+            color: var(--color-accent) !important;
+            background-color: rgba(37, 99, 235, 0.08);
+            font-weight: 700 !important;
+            border-left: 3.5px solid var(--color-accent);
+            padding-left: 0.85rem !important;
+        }
+        html[data-theme='dark'] .mobile-nav-link.active {
+            background-color: rgba(59, 130, 246, 0.15);
+        }
+        html[dir='rtl'] .mobile-nav-link.active {
+            border-left: none;
+            border-right: 3.5px solid var(--color-accent);
+            padding-left: 0.75rem !important;
+            padding-right: 0.85rem !important;
+        }
+        .mobile-nav-sublink {
+            transition: all 0.2s ease;
+        }
+        .mobile-nav-sublink:hover, .mobile-nav-sublink.active {
+            color: var(--color-accent) !important;
+            font-weight: 600 !important;
+        }
+
+        .dropdown-wrapper { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 0.75rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            min-width: 200px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+            padding: 0.4rem 0;
+        }
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+            display: block;
+        }
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 1.2rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-accent);
+            padding-left: 1.5rem;
+        }
+        .dropdown-menu a i { width: 20px; color: var(--color-accent); margin-right: 8px; }
+
+        @media (max-width: 1024px) {
+            .dropdown-menu { position: static; display: none; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
+            .dropdown-wrapper:hover .dropdown-menu { display: block; }
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover {
+            background: var(--color-accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+        }
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.92);
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        html[data-theme='dark'] .btn-outline {
+            background: rgba(15, 23, 42, 0.85);
+        }
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: white;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Pricing page specific styles */
+        .pricing-hero-bg {
+            position: relative;
+            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.82) 55%, rgba(255, 255, 255, 0.52) 100%), url('assets/pricing_hero_bg.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+        html[data-theme='dark'] .pricing-hero-bg {
+            background-image: radial-gradient(circle at center, rgba(15, 23, 42, 0.94) 0%, rgba(15, 23, 42, 0.85) 55%, rgba(15, 23, 42, 0.60) 100%), url('assets/pricing_hero_bg.jpg');
+        }
+        .glass-card {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--color-border);
+            border-radius: 2rem;
+        }
+        html[data-theme='dark'] .glass-card {
+            background: rgba(15,23,42,0.5);
+        }
+        .pricing-card {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 2rem;
+            padding: 2rem 1.8rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 48px -12px rgba(37,99,235,0.2);
+        }
+        .pricing-card.popular {
+            border-color: var(--color-accent);
+            background: var(--color-accent);
+            color: white;
+        }
+        .pricing-card.popular .text-secondary-text { color: rgba(255,255,255,0.8); }
+        .pricing-card.popular .btn-outline { border-color: white; color: white; }
+        .pricing-card.popular .btn-outline:hover { background: white; color: var(--color-accent); }
+        .pricing-card.popular .btn-primary { background: white; color: var(--color-accent); }
+        .pricing-card.popular .btn-primary:hover { background: #f0f0f0; }
+        .pricing-card .popular-badge {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: white;
+            color: var(--color-accent);
+            padding: 0.2rem 1rem;
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .pricing-card.popular .popular-badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        .feature-check {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.3rem 0;
+            font-size: 0.9rem;
+        }
+        .feature-check i {
+            color: var(--color-accent);
+            width: 1.2rem;
+            text-align: center;
+        }
+        .pricing-card.popular .feature-check i { color: white; }
+        .toggle-option {
+            display: inline-flex;
+            background: var(--color-hover);
+            border: 1px solid var(--color-border);
+            border-radius: 100px;
+            padding: 0.3rem;
+        }
+        .toggle-option button {
+            padding: 0.4rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            background: transparent;
+            color: var(--color-secondary-text);
+            cursor: pointer;
+        }
+        .toggle-option button.active {
+            background: var(--color-accent);
+            color: white;
+        }
+        .saving-badge {
+            background: #10B981;
+            color: white;
+            padding: 0.15rem 0.8rem;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .img-cover {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .addon-card {
+            background: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 1.2rem;
+            padding: 1.2rem 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .addon-card:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 8px 24px rgba(37,99,235,0.06);
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- ======== HEADER (identical) ======== -->
+    <header class="sticky top-0 z-50 transition-colors duration-300 shadow-md border-b border-border bg-background" id="main-header">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-[72px]">
+            <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight flex items-center gap-2.5">
+                <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/25">
+                    <i class="fa-solid fa-car-side text-white text-lg"></i>
+                </div>
+                <span style="color: var(--color-primary-text);">Drive<span style="color: var(--color-accent);">Sim</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden xl:flex items-center space-x-5">
+                <div class="flex space-x-4 rtl:space-x-reverse rtl:ml-6 text-primary-text font-medium">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center" id="home-dropdown-btn">
+                            Home <svg class="w-3 h-3 ml-1 relative top-[2px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="home2.html">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="simulator.html" class="nav-link">Simulator</a>
+                    <a href="theory.html" class="nav-link">Theory</a>
+                    <a href="schedule.html" class="nav-link">Schedule</a>
+                    <a href="pricing.html" class="nav-link active">Pricing</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center">
+                            Dashboard <svg class="w-3 h-3 ml-1 relative top-[2px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="user.html">User</a>
+                            <a href="admin.html">Admin</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-px h-6 bg-border mx-2"></div>
+
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" class="text-primary-text hover:text-accent p-2 rounded-md border border-border transition duration-200">
+                        <svg class="w-5 h-5 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-5 h-5 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <button id="rtl-toggle" class="text-primary-text hover:text-accent p-2 rounded-md border border-border transition duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+                    </button>
+
+                    <div class="flex items-center gap-2 ml-2">
+                        <a href="login.html" class="btn-outline px-5 py-2 rounded-full font-semibold text-sm shadow-sm hover:shadow-lg transition-shadow">Login</a>
+                        <a href="signup.html" class="btn-primary px-5 py-2.5 rounded-full font-semibold text-sm shadow-sm hover:shadow-lg transition-shadow">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="xl:hidden flex items-center">
+                <button id="mobile-menu-open" class="text-primary-text hover:text-accent p-1.5 rounded-full">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ======== MAIN CONTENT – PRICING UNIQUE ======== -->
+    <main class="flex-grow">
+
+        <!-- HERO: Pricing with centered content -->
+        <section class="pricing-hero-bg py-16 lg:py-20 border-b border-border relative overflow-hidden">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="max-w-3xl mx-auto text-center space-y-6">
+                    <span class="inline-flex items-center gap-2 bg-white/90 dark:bg-slate-900/90 text-accent px-4 py-1.5 rounded-full text-sm font-bold border border-accent/30 shadow-sm">
+                        <i class="fa-regular fa-tag"></i> Pricing Plans
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+                        <span class="text-primary-text">Choose the</span> <span class="text-accent">right plan</span> <span class="text-primary-text">for you</span>
+                    </h1>
+                    <p class="text-primary-text/85 text-lg max-w-xl mx-auto font-medium leading-relaxed">Flexible pricing for simulator sessions, theory prep, and practice tests. No hidden fees, cancel anytime.</p>
+                    <div class="flex flex-wrap items-center justify-center gap-4">
+                        <div class="toggle-option">
+                            <button class="active" data-billing="monthly">Monthly</button>
+                            <button data-billing="yearly">Yearly <span class="saving-badge ml-1">Save 20%</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING CARDS -->
+        <section class="py-16 container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
+                <!-- Starter -->
+                <div class="pricing-card">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold">Starter</h3>
+                        <div class="mt-3 flex items-baseline gap-1">
+                            <span class="text-4xl font-extrabold price-display" data-monthly="49" data-yearly="39">$49</span>
+                            <span class="text-secondary-text text-sm billing-period">/ month</span>
+                        </div>
+                        <p class="text-secondary-text text-sm mt-1">Perfect for beginners</p>
+                        <ul class="mt-6 space-y-2">
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> 1 simulator session</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Theory test access</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Practice materials</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Basic analytics</li>
+                            <li class="feature-check text-secondary-text opacity-60"><i class="fa-solid fa-minus"></i> Priority scheduling</li>
+                            <li class="feature-check text-secondary-text opacity-60"><i class="fa-solid fa-minus"></i> Personal coach</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn-outline w-full mt-8 py-3.5 rounded-full font-semibold text-center block">Get Starter</a>
+                </div>
+
+                <!-- Pro (Popular) -->
+                <div class="pricing-card popular">
+                    <span class="popular-badge">Most Popular</span>
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold">Pro</h3>
+                        <div class="mt-3 flex items-baseline gap-1">
+                            <span class="text-4xl font-extrabold price-display" data-monthly="149" data-yearly="119">$149</span>
+                            <span class="text-white/80 text-sm billing-period">/ month</span>
+                        </div>
+                        <p class="text-white/80 text-sm mt-1">For serious learners</p>
+                        <ul class="mt-6 space-y-2">
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> 6 simulator sessions</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Unlimited theory tests</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Progress reports</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Priority scheduling</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> All 12 scenarios</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> VR support</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn-primary w-full mt-8 py-3.5 rounded-full font-semibold text-center block bg-white text-accent hover:bg-gray-100">Get Pro</a>
+                </div>
+
+                <!-- Premium -->
+                <div class="pricing-card">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold">Premium</h3>
+                        <div class="mt-3 flex items-baseline gap-1">
+                            <span class="text-4xl font-extrabold price-display" data-monthly="299" data-yearly="239">$299</span>
+                            <span class="text-secondary-text text-sm billing-period">/ month</span>
+                        </div>
+                        <p class="text-secondary-text text-sm mt-1">For professionals</p>
+                        <ul class="mt-6 space-y-2">
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Unlimited simulator</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> All theory materials</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Personal coach</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> 24/7 support</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Custom scenarios</li>
+                            <li class="feature-check"><i class="fa-solid fa-check"></i> Advanced analytics</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn-outline w-full mt-8 py-3.5 rounded-full font-semibold text-center block">Get Premium</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADD-ONS / EXTRAS -->
+        <section class="bg-hover border-y border-border py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-accent font-semibold tracking-widest text-sm">ADD-ONS</span>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold mt-2">Enhance your experience</h2>
+                    <p class="text-secondary-text mt-2">Add extra sessions or features to any plan.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                    <div class="addon-card">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-car"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-primary-text">Extra Simulator Session</h4>
+                                <p class="text-secondary-text text-sm">Add one session to your plan</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl font-bold text-accent">$35</span>
+                            <a href="#" class="btn-outline px-4 py-1.5 rounded-full text-sm font-semibold">Add</a>
+                        </div>
+                    </div>
+                    <div class="addon-card">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-xl">
+                                <i class="fa-regular fa-clipboard"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-primary-text">Theory Test Pack</h4>
+                                <p class="text-secondary-text text-sm">50 extra practice questions</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl font-bold text-accent">$15</span>
+                            <a href="#" class="btn-outline px-4 py-1.5 rounded-full text-sm font-semibold">Add</a>
+                        </div>
+                    </div>
+                    <div class="addon-card">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-xl">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-primary-text">Personal Coach Session</h4>
+                                <p class="text-secondary-text text-sm">1-on-1 guidance session</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl font-bold text-accent">$25</span>
+                            <a href="#" class="btn-outline px-4 py-1.5 rounded-full text-sm font-semibold">Add</a>
+                        </div>
+                    </div>
+                    <div class="addon-card">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center text-xl">
+                                <i class="fa-regular fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-primary-text">Priority Booking</h4>
+                                <p class="text-secondary-text text-sm">Book any slot, any time</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl font-bold text-accent">$10</span>
+                            <a href="#" class="btn-outline px-4 py-1.5 rounded-full text-sm font-semibold">Add</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARISON TABLE -->
+        <section class="py-16 container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-accent font-semibold tracking-widest text-sm">COMPARE</span>
+                <h2 class="text-3xl lg:text-4xl font-extrabold mt-2">Find your perfect fit</h2>
+            </div>
+            <div class="overflow-x-auto max-w-5xl mx-auto">
+                <table class="w-full text-sm border-collapse">
+                    <thead>
+                        <tr class="border-b border-border">
+                            <th class="text-left py-4 px-4 font-bold text-primary-text">Feature</th>
+                            <th class="text-center py-4 px-4 font-bold text-primary-text">Starter</th>
+                            <th class="text-center py-4 px-4 font-bold text-accent">Pro</th>
+                            <th class="text-center py-4 px-4 font-bold text-primary-text">Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-border/50">
+                            <td class="py-3 px-4 text-secondary-text">Simulator sessions</td>
+                            <td class="text-center py-3 px-4">1</td>
+                            <td class="text-center py-3 px-4 font-semibold text-accent">6</td>
+                            <td class="text-center py-3 px-4">Unlimited</td>
+                        </tr>
+                        <tr class="border-b border-border/50">
+                            <td class="py-3 px-4 text-secondary-text">Theory test questions</td>
+                            <td class="text-center py-3 px-4">100</td>
+                            <td class="text-center py-3 px-4 font-semibold text-accent">500+</td>
+                            <td class="text-center py-3 px-4">500+</td>
+                        </tr>
+                        <tr class="border-b border-border/50">
+                            <td class="py-3 px-4 text-secondary-text">Mock tests</td>
+                            <td class="text-center py-3 px-4">2</td>
+                            <td class="text-center py-3 px-4 font-semibold text-accent">12</td>
+                            <td class="text-center py-3 px-4">Unlimited</td>
+                        </tr>
+                        <tr class="border-b border-border/50">
+                            <td class="py-3 px-4 text-secondary-text">Personal coach</td>
+                            <td class="text-center py-3 px-4 text-secondary-text/40">✕</td>
+                            <td class="text-center py-3 px-4 text-secondary-text/40">✕</td>
+                            <td class="text-center py-3 px-4 text-accent">✓</td>
+                        </tr>
+                        <tr class="border-b border-border/50">
+                            <td class="py-3 px-4 text-secondary-text">Priority scheduling</td>
+                            <td class="text-center py-3 px-4 text-secondary-text/40">✕</td>
+                            <td class="text-center py-3 px-4 text-accent">✓</td>
+                            <td class="text-center py-3 px-4 text-accent">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 text-secondary-text">VR support</td>
+                            <td class="text-center py-3 px-4 text-secondary-text/40">✕</td>
+                            <td class="text-center py-3 px-4 text-accent">✓</td>
+                            <td class="text-center py-3 px-4 text-accent">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FAQ / TRUST -->
+        <section id="faq" class="bg-hover border-y border-border py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 max-w-6xl mx-auto items-start">
+                    <div class="lg:col-span-7">
+                        <span class="text-accent font-bold tracking-widest text-xs uppercase bg-accent/10 px-3 py-1 rounded-full">FAQ</span>
+                        <h3 class="text-3xl lg:text-4xl font-extrabold mt-3 text-primary-text">Common questions</h3>
+                        <p class="text-secondary-text mt-2 text-base">Quick answers regarding memberships, billing, and trial periods.</p>
+                        
+                        <div class="space-y-4 mt-8" id="faq-accordion">
+                            <!-- Q&A 1 -->
+                            <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/40 shadow-sm">
+                                <button type="button" class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer select-none group" aria-expanded="false">
+                                    <div class="flex items-center gap-3.5">
+                                        <span class="w-8 h-8 rounded-xl bg-accent/10 text-accent font-bold text-xs flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors duration-200">Q</span>
+                                        <h4 class="font-bold text-primary-text text-base md:text-lg group-hover:text-accent transition-colors">Can I change plans later?</h4>
+                                    </div>
+                                    <span class="w-8 h-8 rounded-full bg-hover flex items-center justify-center shrink-0 text-secondary-text transition-transform duration-300 faq-icon">
+                                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                                    </span>
+                                </button>
+                                <div class="faq-answer hidden px-5 pb-5 pt-1 text-secondary-text text-sm leading-relaxed border-t border-border/50">
+                                    <div class="flex items-start gap-3.5 mt-3">
+                                        <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">A</span>
+                                        <p class="pt-1 text-secondary-text text-sm md:text-base leading-relaxed">Yes, you can upgrade or downgrade your plan at any time through your dashboard. Changes take effect immediately, and differences are prorated.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Q&A 2 -->
+                            <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/40 shadow-sm">
+                                <button type="button" class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer select-none group" aria-expanded="false">
+                                    <div class="flex items-center gap-3.5">
+                                        <span class="w-8 h-8 rounded-xl bg-accent/10 text-accent font-bold text-xs flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors duration-200">Q</span>
+                                        <h4 class="font-bold text-primary-text text-base md:text-lg group-hover:text-accent transition-colors">Is there a free trial?</h4>
+                                    </div>
+                                    <span class="w-8 h-8 rounded-full bg-hover flex items-center justify-center shrink-0 text-secondary-text transition-transform duration-300 faq-icon">
+                                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                                    </span>
+                                </button>
+                                <div class="faq-answer hidden px-5 pb-5 pt-1 text-secondary-text text-sm leading-relaxed border-t border-border/50">
+                                    <div class="flex items-start gap-3.5 mt-3">
+                                        <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">A</span>
+                                        <p class="pt-1 text-secondary-text text-sm md:text-base leading-relaxed">Yes! All new learners get a 14-day free access trial to our online theory test question bank and mock exams. No credit card is required to begin.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Q&A 3 -->
+                            <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/40 shadow-sm">
+                                <button type="button" class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer select-none group" aria-expanded="false">
+                                    <div class="flex items-center gap-3.5">
+                                        <span class="w-8 h-8 rounded-xl bg-accent/10 text-accent font-bold text-xs flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors duration-200">Q</span>
+                                        <h4 class="font-bold text-primary-text text-base md:text-lg group-hover:text-accent transition-colors">What payment methods do you accept?</h4>
+                                    </div>
+                                    <span class="w-8 h-8 rounded-full bg-hover flex items-center justify-center shrink-0 text-secondary-text transition-transform duration-300 faq-icon">
+                                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                                    </span>
+                                </button>
+                                <div class="faq-answer hidden px-5 pb-5 pt-1 text-secondary-text text-sm leading-relaxed border-t border-border/50">
+                                    <div class="flex items-start gap-3.5 mt-3">
+                                        <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">A</span>
+                                        <p class="pt-1 text-secondary-text text-sm md:text-base leading-relaxed">We accept Visa, MasterCard, American Express, PayPal, Apple Pay, Google Pay, and bank transfers for annual or enterprise student packages.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Q&A 4 -->
+                            <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300 hover:border-accent/40 shadow-sm">
+                                <button type="button" class="faq-toggle w-full p-5 text-left flex items-center justify-between gap-4 cursor-pointer select-none group" aria-expanded="false">
+                                    <div class="flex items-center gap-3.5">
+                                        <span class="w-8 h-8 rounded-xl bg-accent/10 text-accent font-bold text-xs flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors duration-200">Q</span>
+                                        <h4 class="font-bold text-primary-text text-base md:text-lg group-hover:text-accent transition-colors">Can simulator hours be shared with family members?</h4>
+                                    </div>
+                                    <span class="w-8 h-8 rounded-full bg-hover flex items-center justify-center shrink-0 text-secondary-text transition-transform duration-300 faq-icon">
+                                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                                    </span>
+                                </button>
+                                <div class="faq-answer hidden px-5 pb-5 pt-1 text-secondary-text text-sm leading-relaxed border-t border-border/50">
+                                    <div class="flex items-start gap-3.5 mt-3">
+                                        <span class="w-8 h-8 rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">A</span>
+                                        <p class="pt-1 text-secondary-text text-sm md:text-base leading-relaxed">Our Pro and Enterprise multi-session packages support household sharing. Simply add family members under your account portal.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 self-start">
+                        <div class="bg-background border border-border rounded-2xl p-6 lg:p-8 text-center shadow-md relative overflow-hidden">
+                            <!-- Guarantee Badge & Icon -->
+                            <div class="w-14 h-14 rounded-2xl bg-accent/10 text-accent flex items-center justify-center text-2xl mx-auto mb-3.5 border border-accent/20 shadow-sm" style="background-color: rgba(37, 99, 235, 0.1);">
+                                <i class="fa-solid fa-shield-halved text-accent text-2xl"></i>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-3" style="background-color: rgba(16, 185, 129, 0.1);">
+                                <i class="fa-solid fa-circle-check text-[11px]"></i> 30-Day Money-Back Guarantee
+                            </span>
+                            <h4 class="text-xl lg:text-2xl font-bold text-primary-text">100% Satisfaction Guarantee</h4>
+                            <p class="text-secondary-text mt-2 text-sm leading-relaxed">If you're not completely satisfied with our simulator training or theory prep within your first 30 days, we'll refund your full payment. No questions asked.</p>
+                            
+                            <!-- Key Trust Points -->
+                            <div class="space-y-2 text-left text-xs sm:text-sm text-secondary-text my-5 bg-hover p-4 rounded-xl border border-border">
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-check text-accent text-xs"></i>
+                                    <span>Full refund within 30 days of registration</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-check text-accent text-xs"></i>
+                                    <span>No lock-in contracts &ndash; cancel anytime online</span>
+                                </div>
+                                <div class="flex items-center gap-2.5">
+                                    <i class="fa-solid fa-check text-accent text-xs"></i>
+                                    <span>Instant billing support & refund processing</span>
+                                </div>
+                            </div>
+
+                            <!-- Trust Badges Footer -->
+                            <div class="grid grid-cols-3 gap-2 pt-4 border-t border-border text-center text-xs font-medium text-secondary-text">
+                                <div class="flex flex-col items-center gap-1">
+                                    <i class="fa-solid fa-lock text-accent text-base"></i>
+                                    <span>256-Bit SSL</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <i class="fa-solid fa-headset text-accent text-base"></i>
+                                    <span>24/7 Support</span>
+                                </div>
+                                <div class="flex flex-col items-center gap-1">
+                                    <i class="fa-solid fa-rotate-left text-accent text-base"></i>
+                                    <span>Cancel Anytime</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-16 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="max-w-3xl mx-auto bg-background border border-border rounded-3xl p-8 lg:p-12 shadow-sm">
+                <h2 class="text-3xl lg:text-4xl font-extrabold">Ready to start your journey?</h2>
+                <p class="text-secondary-text text-lg mt-2">Join thousands of learners and take the first step toward your driving license.</p>
+                <div class="flex flex-wrap justify-center gap-4 mt-6">
+                    <a href="#" class="btn-primary px-10 py-3.5 rounded-full font-bold shadow-lg shadow-accent/30"><i class="fa-regular fa-gem mr-2"></i> Start free trial</a>
+                    <a href="contact.html" class="btn-outline px-10 py-3.5 rounded-full font-bold"><i class="fa-regular fa-message mr-2"></i> Contact sales</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ======== MOBILE DRAWER (identical) ======== -->
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
+            <div class="flex justify-between items-center pb-4 border-b border-border">
+                <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/25">
+                        <i class="fa-solid fa-car-side text-white text-lg"></i>
+                    </div>
+                    <span style="color: var(--color-primary-text);">Drive<span style="color: var(--color-accent);">Sim</span></span>
+                </a>
+                <button id="mobile-menu-close" class="text-primary-text hover:text-accent"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            </div>
+            <nav class="flex flex-col space-y-1.5 py-4">
+                <div>
+                    <button class="mobile-nav-link block font-semibold text-lg py-2.5 px-3 rounded-xl w-full text-left flex justify-between items-center" id="mobile-homes-toggle">
+                        <span>Home</span>
+                        <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-homes-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border">
+                        <a href="index.html" class="mobile-nav-sublink block text-secondary-text hover:text-accent text-base py-1.5 px-2 rounded-lg">Home 1</a>
+                        <a href="home2.html" class="mobile-nav-sublink block text-secondary-text hover:text-accent text-base py-1.5 px-2 rounded-lg">Home 2</a>
+                    </div>
+                </div>
+                <a href="about.html" class="mobile-nav-link block font-semibold text-lg py-2.5 px-3 rounded-xl">About</a>
+                <a href="simulator.html" class="mobile-nav-link block font-semibold text-lg py-2.5 px-3 rounded-xl">Simulator</a>
+                <a href="theory.html" class="mobile-nav-link block font-semibold text-lg py-2.5 px-3 rounded-xl">Theory</a>
+                <a href="schedule.html" class="mobile-nav-link block font-semibold text-lg py-2.5 px-3 rounded-xl">Schedule</a>
+                <a href="pricing.html" class="mobile-nav-link active block font-semibold text-lg py-2.5 px-3 rounded-xl">Pricing</a>
+                <a href="contact.html" class="mobile-nav-link block font-semibold text-lg py-2.5 px-3 rounded-xl">Contact</a>
+                <div>
+                    <button class="mobile-nav-link block font-semibold text-lg py-2.5 px-3 rounded-xl w-full text-left flex justify-between items-center" id="mobile-dash-toggle">
+                        <span>Dashboard</span>
+                        <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="dash-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-dash-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border">
+                        <a href="user.html" class="mobile-nav-sublink block text-secondary-text hover:text-accent text-base py-1.5 px-2 rounded-lg">User</a>
+                        <a href="admin.html" class="mobile-nav-sublink block text-secondary-text hover:text-accent text-base py-1.5 px-2 rounded-lg">Admin</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="pt-4 border-t border-border mt-2 flex justify-around items-center">
+                <button id="drawer-rtl-toggle" class="flex flex-col items-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg><span class="text-xs mt-1 text-secondary-text">RTL</span></button>
+                <button id="drawer-theme-toggle" class="flex flex-col items-center">
+                    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    <span class="text-xs mt-1 text-secondary-text">Theme</span>
+                </button>
+            </div>
+            <div class="flex mt-5 gap-4 w-full">
+                <a href="login.html" class="flex-1 btn-outline text-center py-2 rounded-full font-semibold text-sm shadow-sm">Login</a>
+                <a href="signup.html" class="flex-1 btn-primary text-center py-2.5 rounded-full font-semibold text-sm shadow-sm">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== FOOTER (identical) ======== -->
+    <footer id="main-footer" class="pt-16 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-gray-800 text-center sm:text-left">
+                <div class="flex flex-col items-center sm:items-start">
+                    <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight flex items-center justify-center sm:justify-start gap-2.5">
+                        <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/25">
+                            <i class="fa-solid fa-car-side text-white text-lg"></i>
+                        </div>
+                        <span style="color: var(--color-footer-text);">Drive<span style="color: var(--color-accent);">Sim</span></span>
+                    </a>
+                    <p class="text-gray-400 text-sm mt-4 leading-relaxed max-w-sm sm:max-w-none">The most advanced driving simulator and theory test preparation center.</p>
+                    <div class="flex justify-center sm:justify-start gap-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-accent transition text-xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition text-xl"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-lg mb-5">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="simulator.html" class="footer-link text-gray-400 hover:text-accent transition">Simulator</a></li>
+                        <li><a href="theory.html" class="footer-link text-gray-400 hover:text-accent transition">Theory Test</a></li>
+                        <li><a href="practice.html" class="footer-link text-gray-400 hover:text-accent transition">Practice</a></li>
+                        <li><a href="schedule.html" class="footer-link text-gray-400 hover:text-accent transition">Schedule</a></li>
+                        <li><a href="pricing.html" class="footer-link text-gray-400 hover:text-accent transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-lg mb-5">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="contact.html" class="footer-link text-gray-400 hover:text-accent transition">Contact</a></li>
+                        <li><a href="#faq" class="footer-link text-gray-400 hover:text-accent transition">FAQs</a></li>
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-accent transition">Help Center</a></li>
+                        <li><a href="#" class="footer-link text-gray-400 hover:text-accent transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-lg mb-5">Contact</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-center justify-center sm:justify-start gap-3"><i class="fas fa-map-marker-alt text-accent"></i> 123 Simulator Ave, City</li>
+                        <li class="flex items-center justify-center sm:justify-start gap-3"><i class="fas fa-phone text-accent"></i> (555) 123-4567</li>
+                        <li class="flex items-center justify-center sm:justify-start gap-3"><i class="fas fa-envelope text-accent"></i> info@drivesim.com</li>
+                        <li class="flex items-center justify-center sm:justify-start gap-3"><i class="fas fa-clock text-accent"></i> Mon–Sat 8am – 8pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="py-8 text-center text-gray-500 text-sm">© 2026 DriveSim. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <!-- ======== SCRIPTS (identical + pricing enhancements) ======== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+
+            // Mobile Drawer
+            const menuDrawer = document.getElementById('mobile-menu-drawer');
+            const menuContent = document.getElementById('drawer-content');
+            const menuBackdrop = document.getElementById('drawer-backdrop');
+
+            const openDrawer = () => {
+                menuDrawer.classList.remove('pointer-events-none');
+                menuContent.classList.remove('translate-y-[-100%]');
+                menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden';
+            };
+            const closeDrawer = () => {
+                menuContent.classList.add('translate-y-[-100%]');
+                menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
+                setTimeout(() => { menuDrawer.classList.add('pointer-events-none'); document.body.style.overflow = ''; }, 300);
+            };
+
+            document.getElementById('mobile-menu-open').addEventListener('click', openDrawer);
+            document.getElementById('mobile-menu-close').addEventListener('click', closeDrawer);
+            menuBackdrop.addEventListener('click', closeDrawer);
+
+            // Mobile Accordions
+            const setupAccordion = (toggleId, menuId, iconId) => {
+                const toggle = document.getElementById(toggleId);
+                toggle?.addEventListener('click', () => {
+                    const menu = document.getElementById(menuId);
+                    const icon = document.getElementById(iconId);
+                    if(menu) menu.classList.toggle('hidden');
+                    if(icon) icon.classList.toggle('rotate-180');
+                });
+            };
+            setupAccordion('mobile-homes-toggle', 'mobile-homes-menu', 'homes-icon');
+            setupAccordion('mobile-dash-toggle', 'mobile-dash-menu', 'dash-icon');
+
+            // Theme Toggle
+            const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('drawer-theme-toggle')];
+            const applyTheme = (theme) => {
+                html.setAttribute('data-theme', theme);
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
+            };
+            themeToggles.forEach(btn => btn?.addEventListener('click', () => {
+                const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                localStorage.setItem('theme', next);
+                applyTheme(next);
+            }));
+            applyTheme(localStorage.getItem('theme') || 'light');
+
+            // RTL Toggle
+            const rtlToggles = [document.getElementById('rtl-toggle'), document.getElementById('drawer-rtl-toggle')];
+            rtlToggles.forEach(btn => btn?.addEventListener('click', () => {
+                const current = html.getAttribute('dir') === 'rtl' ? 'ltr' : 'rtl';
+                html.setAttribute('dir', current);
+                localStorage.setItem('dir', current);
+            }));
+            const savedDir = localStorage.getItem('dir');
+            if (savedDir) html.setAttribute('dir', savedDir);
+
+            // Active Nav Logic (Desktop + Mobile Drawer)
+            const setActiveNavLink = () => {
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                
+                // Desktop nav links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                if (['index.html', 'home2.html'].includes(currentPath)) {
+                    document.getElementById('home-dropdown-btn')?.classList.add('active');
+                }
+
+                // Mobile drawer links
+                document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                // Mobile sublinks
+                document.querySelectorAll('.mobile-nav-sublink').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                // Open & highlight mobile accordion if sublink is active
+                if (['index.html', 'home2.html'].includes(currentPath)) {
+                    document.getElementById('mobile-homes-toggle')?.classList.add('active');
+                    document.getElementById('mobile-homes-menu')?.classList.remove('hidden');
+                    document.getElementById('homes-icon')?.classList.add('rotate-180');
+                }
+                if (['user.html', 'admin.html'].includes(currentPath)) {
+                    document.getElementById('mobile-dash-toggle')?.classList.add('active');
+                    document.getElementById('mobile-dash-menu')?.classList.remove('hidden');
+                    document.getElementById('dash-icon')?.classList.add('rotate-180');
+                }
+            };
+            setActiveNavLink();
+
+            // Pricing toggle: Monthly / Yearly
+            const toggleBtns = document.querySelectorAll('.toggle-option button');
+            const priceDisplays = document.querySelectorAll('.price-display');
+            const billingPeriods = document.querySelectorAll('.billing-period');
+
+            toggleBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    toggleBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const billing = btn.dataset.billing;
+
+                    priceDisplays.forEach(el => {
+                        const val = el.dataset[billing];
+                        if (val) el.textContent = '$' + val;
+                    });
+
+                    billingPeriods.forEach(el => {
+                        el.textContent = billing === 'monthly' ? '/ month' : '/ year';
+                    });
+                });
+            });
+
+            // Interactive FAQ Accordion (Touch / Click & Hover)
+            const faqItems = document.querySelectorAll('#faq-accordion .faq-item');
+
+            const openFaq = (item, isPinned = false) => {
+                const button = item.querySelector('.faq-toggle');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+                const qBadge = button.querySelector('span:first-child');
+
+                button.setAttribute('aria-expanded', 'true');
+                answer.classList.remove('hidden');
+                icon?.classList.add('rotate-180');
+                item.classList.remove('border-border');
+                item.classList.add('border-accent/60', 'shadow-md', 'shadow-accent/5');
+                if (qBadge) {
+                    qBadge.className = 'w-8 h-8 rounded-xl bg-accent text-white font-bold text-xs flex items-center justify-center shrink-0 shadow-sm shadow-accent/20 transition-all duration-200';
+                }
+                if (isPinned) {
+                    item.dataset.pinned = 'true';
+                }
+            };
+
+            const closeFaq = (item) => {
+                const button = item.querySelector('.faq-toggle');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+                const qBadge = button.querySelector('span:first-child');
+
+                button.setAttribute('aria-expanded', 'false');
+                answer.classList.add('hidden');
+                icon?.classList.remove('rotate-180');
+                item.classList.remove('border-accent/60', 'shadow-md', 'shadow-accent/5');
+                item.classList.add('border-border');
+                if (qBadge) {
+                    qBadge.className = 'w-8 h-8 rounded-xl bg-accent/10 text-accent font-bold text-xs flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors duration-200';
+                }
+                delete item.dataset.pinned;
+            };
+
+            faqItems.forEach(item => {
+                const button = item.querySelector('.faq-toggle');
+
+                // Click / Tap on Question: Toggle & Pin
+                button?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                    const isPinned = item.dataset.pinned === 'true';
+
+                    if (isExpanded && isPinned) {
+                        closeFaq(item);
+                    } else {
+                        // Close other items
+                        faqItems.forEach(other => {
+                            if (other !== item) closeFaq(other);
+                        });
+                        openFaq(item, true);
+                    }
+                });
+
+                // Hover / Mouse touch: Reveal answer
+                item.addEventListener('mouseenter', () => {
+                    if (item.dataset.pinned !== 'true') {
+                        faqItems.forEach(other => {
+                            if (other !== item && other.dataset.pinned !== 'true') {
+                                closeFaq(other);
+                            }
+                        });
+                        openFaq(item, false);
+                    }
+                });
+
+                // Leave: Collapse if not clicked/pinned
+                item.addEventListener('mouseleave', () => {
+                    if (item.dataset.pinned !== 'true') {
+                        closeFaq(item);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
