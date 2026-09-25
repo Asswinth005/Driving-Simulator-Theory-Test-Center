@@ -154,26 +154,26 @@
         .dark .card-design { background: #141A24; border-color: rgba(var(--color-rgb-bright), 0.15); }
         .card-design:hover { border-color: var(--color-primary); }
 
-        .btn-primary-design {
+        .btn-primary-design, .btn-primary {
             background: var(--color-primary); color: #FFFFFF;
             font-weight: 700; border-radius: 60px; transition: all 0.3s;
             box-shadow: 0 4px 12px rgba(var(--color-rgb-primary), 0.3);
-            white-space: nowrap; border: none;
+            white-space: nowrap; border: none; cursor: pointer;
             display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; vertical-align: middle;
         }
-        .btn-primary-design:hover { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(var(--color-rgb-primary), 0.4); color: #FFFFFF; }
-        .dark .btn-primary-design { background: var(--color-primary-bright); color: #0A0D12; }
-        .dark .btn-primary-design:hover { background: var(--color-primary); color: #FFFFFF; }
+        .btn-primary-design:hover, .btn-primary:hover { background: var(--color-primary-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(var(--color-rgb-primary), 0.4); color: #FFFFFF; }
+        .dark .btn-primary-design, .dark .btn-primary { background: var(--color-primary-bright); color: #0A0D12; }
+        .dark .btn-primary-design:hover, .dark .btn-primary:hover { background: var(--color-primary); color: #FFFFFF; }
 
-        .btn-outline-design {
+        .btn-outline-design, .btn-outline {
             border: 1.5px solid var(--color-primary); color: var(--color-primary);
             background: transparent; border-radius: 60px; font-weight: 600;
-            transition: all 0.3s; white-space: nowrap;
+            transition: all 0.3s; white-space: nowrap; cursor: pointer;
             display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; vertical-align: middle;
         }
-        .btn-outline-design:hover { background: var(--color-primary); color: #FFFFFF; transform: translateY(-2px); }
-        .dark .btn-outline-design { border-color: var(--color-primary-bright); color: var(--color-primary-bright); }
-        .dark .btn-outline-design:hover { background: var(--color-primary-bright); color: #0A0D12; }
+        .btn-outline-design:hover, .btn-outline:hover { background: var(--color-primary); color: #FFFFFF; transform: translateY(-2px); }
+        .dark .btn-outline-design, .dark .btn-outline { border-color: var(--color-primary-bright); color: var(--color-primary-bright); }
+        .dark .btn-outline-design:hover, .dark .btn-outline:hover { background: var(--color-primary-bright); color: #0A0D12; }
 
         .stat-card {
             background: #FFFFFF; border-radius: 20px; padding: 1.2rem;
