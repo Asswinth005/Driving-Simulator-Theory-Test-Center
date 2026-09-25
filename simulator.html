@@ -315,8 +315,17 @@
             color: white;
         }
         .pricing-card-sim.popular .text-secondary-text { color: rgba(255,255,255,0.8); }
-        .pricing-card-sim.popular .btn-outline { border-color: white; color: white; }
-        .pricing-card-sim.popular .btn-outline:hover { background: white; color: var(--color-accent); }
+        .pricing-card-sim.popular .btn-outline,
+        .pricing-card-sim.popular .btn-primary { 
+            border-color: white; 
+            background-color: white; 
+            color: var(--color-accent) !important; 
+        }
+        .pricing-card-sim.popular .btn-outline:hover,
+        .pricing-card-sim.popular .btn-primary:hover { 
+            background-color: #f1f5f9; 
+            color: #1d4ed8 !important; 
+        }
 
         /* Scenario Demo Tabs */
         .demo-tab {
@@ -647,7 +656,7 @@
                                 <li><i class="fa-solid fa-check mr-2"></i> VR support</li>
                             </ul>
                         </div>
-                        <a href="#" class="btn-outline w-full mt-8 py-3 rounded-full font-semibold text-center block border-white text-white hover:bg-white hover:text-accent">Get Pro</a>
+                        <a href="#" class="btn-primary w-full mt-8 py-3 rounded-full font-bold text-center block bg-white text-accent hover:bg-slate-100 hover:text-blue-700 shadow-md transition-all">Get Pro</a>
                     </div>
                     <div class="pricing-card-sim flex flex-col justify-between h-full hover:shadow-xl transition-all">
                         <div class="flex-grow flex flex-col">
