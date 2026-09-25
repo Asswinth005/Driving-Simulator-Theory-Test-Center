@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='28' fill='%232563EB'/%3E%3Ccircle cx='38' cy='44' r='6' fill='%23FFFFFF'/%3E%3Ccircle cx='62' cy='44' r='6' fill='%23FFFFFF'/%3E%3Crect x='35' y='52' width='30' height='8' rx='4' fill='%23FFFFFF'/%3E%3C/svg%3E" />
+    <link rel="icon" type="image/svg+xml" href="assets/logo-icon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -381,11 +381,12 @@
     <!-- ======== HEADER (identical) ======== -->
     <header class="sticky top-0 z-50 transition-colors duration-300 shadow-md border-b border-border bg-background" id="main-header">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between h-[72px]">
-            <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight flex items-center gap-2.5">
-                <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/25">
-                    <i class="fa-solid fa-car-side text-white text-lg"></i>
+            <a href="index.html" class="flex items-center gap-3 group shrink-0 transition-transform duration-200 hover:scale-[1.02]">
+                <img src="assets/logo-icon.svg" alt="DriveSim Logo" class="w-10 h-10 object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0">
+                <div class="flex flex-col">
+                    <span class="text-xl md:text-2xl font-extrabold tracking-tight text-primary-text leading-none">Drive<span class="text-accent">Sim</span></span>
+                    <span class="text-[9px] font-bold tracking-widest text-secondary-text uppercase opacity-75 mt-0.5">Simulator & Academy</span>
                 </div>
-                <span style="color: var(--color-primary-text);">Drive<span style="color: var(--color-accent);">Sim</span></span>
             </a>
 
             <!-- Desktop Nav -->
@@ -824,11 +825,12 @@
         <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
         <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
             <div class="flex justify-between items-center pb-4 border-b border-border">
-                <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight flex items-center gap-2.5">
-                    <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/25">
-                        <i class="fa-solid fa-car-side text-white text-lg"></i>
+                <a href="index.html" class="flex items-center gap-3 group shrink-0">
+                    <img src="assets/logo-icon.svg" alt="DriveSim Logo" class="w-10 h-10 object-contain drop-shadow-md shrink-0">
+                    <div class="flex flex-col">
+                        <span class="text-xl font-extrabold tracking-tight text-primary-text leading-none">Drive<span class="text-accent">Sim</span></span>
+                        <span class="text-[9px] font-bold tracking-widest text-secondary-text uppercase opacity-75 mt-0.5">Simulator & Academy</span>
                     </div>
-                    <span style="color: var(--color-primary-text);">Drive<span style="color: var(--color-accent);">Sim</span></span>
                 </a>
                 <button id="mobile-menu-close" class="text-primary-text hover:text-accent"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
             </div>
@@ -880,11 +882,12 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-gray-800 text-center sm:text-left">
                 <div class="flex flex-col items-center sm:items-start">
-                    <a href="index.html" class="text-2xl md:text-3xl font-bold tracking-tight flex items-center justify-center sm:justify-start gap-2.5">
-                        <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center shadow-lg shadow-accent/25">
-                            <i class="fa-solid fa-car-side text-white text-lg"></i>
+                    <a href="index.html" class="flex items-center justify-center sm:justify-start gap-3 group shrink-0 transition-transform duration-200 hover:scale-[1.02]">
+                        <img src="assets/logo-icon.svg" alt="DriveSim Logo" class="w-10 h-10 object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-105 shrink-0">
+                        <div class="flex flex-col text-left">
+                            <span class="text-2xl font-extrabold tracking-tight text-white leading-none">Drive<span class="text-accent">Sim</span></span>
+                            <span class="text-[9px] font-bold tracking-widest text-gray-400 uppercase opacity-90 mt-0.5">Simulator & Academy</span>
                         </div>
-                        <span style="color: var(--color-footer-text);">Drive<span style="color: var(--color-accent);">Sim</span></span>
                     </a>
                     <p class="text-gray-400 text-sm mt-4 leading-relaxed max-w-sm sm:max-w-none">The most advanced driving simulator and theory test preparation center.</p>
                     <div class="flex justify-center sm:justify-start gap-4 mt-6">
